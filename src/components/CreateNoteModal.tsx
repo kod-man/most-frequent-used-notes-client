@@ -12,13 +12,28 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function CreateNoteModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const [note, setNote] = useState({
+    keyword: "",
+    description: "",
+    note: "",
+  });
+
   const initialRef = useRef(null);
   const finalRef = useRef(null);
+
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target as HTMLInputElement;
+    setNote((prev) => ({ ...prev, [name]: value }));
+  };
   return (
     <>
       <Button
@@ -46,21 +61,42 @@ function CreateNoteModal() {
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>Keyword</FormLabel>
-              <Input ref={initialRef} placeholder="Keyword" />
+              <Input
+                type="text"
+                name="keyword"
+                onChange={handleInputChange}
+                placeholder="Keyword"
+                value={note.keyword}
+                required
+              />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Description</FormLabel>
-              <Input placeholder="Description" />
+              <Input
+                type="text"
+                name="description"
+                onChange={handleInputChange}
+                placeholder="Description"
+                value={note.description}
+                required
+              />
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Note</FormLabel>
-              <Input placeholder="Note" />
+              <Input
+                type="text"
+                name="note"
+                onChange={handleInputChange}
+                placeholder="Note"
+                value={note.note}
+                required
+              />
             </FormControl>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
+            <Button onClick={handleSubmit} colorScheme="blue" mr={3}>
               Save
             </Button>
             <Button onClick={onClose}>Cancel</Button>
