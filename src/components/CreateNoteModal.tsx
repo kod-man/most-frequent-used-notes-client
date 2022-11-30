@@ -11,12 +11,15 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
+import { defaultToastProps } from "../utils/defaultToastProps";
+import { validateNoteData } from "../utils/validateNoteData";
 
 function CreateNoteModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const toast = useToast();
   const [note, setNote] = useState({
     keyword: "",
     description: "",
@@ -28,6 +31,14 @@ function CreateNoteModal() {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    const errors = validateNoteData(note);
+    if (errors.length !== 0) {
+      toast({
+        ...defaultToastProps,
+        title: errors[0],
+        status: "error",
+      });
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,6 +1,9 @@
-export type Note = {
-  id: string;
+export interface NoteData {
   keyword: string;
   description: string;
-  content: string;
-};
+  note: string;
+}
+
+export interface Note extends NoteData {
+  id: string;
+}
