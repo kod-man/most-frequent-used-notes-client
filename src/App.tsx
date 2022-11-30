@@ -6,7 +6,7 @@ import SearchBar from "./components/SearchBar";
 export const App = () => (
   <ChakraProvider theme={theme}>
     <Box position="relative">
-      <ColorModeSwitcher position="absolute" right="10" />
+      <ColorModeSwitcher position="absolute" right="5" top="-10" />
       <Flex
         mt={12}
         justifyContent="start"
