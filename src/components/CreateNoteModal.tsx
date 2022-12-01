@@ -1,3 +1,4 @@
+import { AddIcon } from "@chakra-ui/icons";
 import {
   Button,
   FormControl,
@@ -70,14 +71,14 @@ function CreateNoteModal() {
     <>
       <Button
         onClick={onOpen}
-        rounded={"full"}
-        mt={4}
-        px={6}
-        colorScheme={"orange"}
-        bg={"orange.400"}
-        _hover={{ bg: "orange.500" }}
+        mx={4}
+        px={8}
+        leftIcon={<AddIcon />}
+        colorScheme="blue"
+        variant="solid"
+        _hover={{ bg: "blue.300" }}
       >
-        Create note
+        New note
       </Button>
 
       <Modal

@@ -1,4 +1,4 @@
-import { Button, Flex, Text, useToast } from "@chakra-ui/react";
+import { Button, Divider, Flex, Text, useToast } from "@chakra-ui/react";
 import { defaultToastProps } from "../utils/defaultToastProps";
 
 function NoteCard({
@@ -16,7 +16,7 @@ function NoteCard({
         border="1px"
         p={4}
         borderRadius={20}
-        borderColor="blue.200"
+        borderColor="blue.300"
         justifyContent="space-between"
       >
         <Text bgColor="transparent">{code}</Text>
@@ -35,6 +35,7 @@ function NoteCard({
           Copy
         </Button>
       </Flex>
+      <Divider mt={4} />
     </Flex>
   );
 }

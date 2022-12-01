@@ -1,7 +1,6 @@
 import { InfoIcon } from "@chakra-ui/icons";
 import { Box, Button, Heading, Spinner, Text } from "@chakra-ui/react";
 import useGetALLNotes from "../hooks/useGetALLNotes";
-import CreateNoteModal from "./CreateNoteModal";
 import NoteCard from "./NoteCard";
 
 function NoteList() {
@@ -37,7 +36,6 @@ function NoteList() {
         <Heading as="h2" size="xl" mt={6} mb={2}>
           There is no note yet
         </Heading>
-        <CreateNoteModal />
       </Box>
     );
   } else {

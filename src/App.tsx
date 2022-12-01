@@ -1,5 +1,6 @@
 import { Box, ChakraProvider, Flex, theme } from "@chakra-ui/react";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import CreateNoteModal from "./components/CreateNoteModal";
 import NoteList from "./components/NoteList";
 import SearchBar from "./components/SearchBar";
 
@@ -15,7 +16,10 @@ export const App = () => (
         minH="100vh"
         p={3}
       >
-        <SearchBar />
+        <Flex w="100%">
+          <SearchBar />
+          <CreateNoteModal />
+        </Flex>
         <NoteList />
       </Flex>
     </Box>
