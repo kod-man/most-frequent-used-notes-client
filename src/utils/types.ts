@@ -4,5 +4,5 @@ export interface NoteData {
 }
 
 export interface Note extends NoteData {
-  id: string;
+  _id: string;
 }

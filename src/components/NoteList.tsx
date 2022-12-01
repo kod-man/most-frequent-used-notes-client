@@ -1,7 +1,8 @@
 import { InfoIcon } from "@chakra-ui/icons";
-import { Box, Button, Flex, Heading, Spinner, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, Spinner, Text } from "@chakra-ui/react";
 import useGetALLNotes from "../hooks/useGetALLNotes";
 import CreateNoteModal from "./CreateNoteModal";
+import NoteCard from "./NoteCard";
 
 function NoteList() {
   const { notes, loading, error } = useGetALLNotes();
@@ -39,8 +40,19 @@ function NoteList() {
         <CreateNoteModal />
       </Box>
     );
+  } else {
+    return (
+      <>
+        {notes.map((note) => (
+          <NoteCard
+            key={note._id}
+            code={note.note}
+            description={note.description}
+          />
+        ))}
+      </>
+    );
   }
-  return <Flex mt={10}>NoteList</Flex>;
 }
 
 export default NoteList;
