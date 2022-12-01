@@ -14,6 +14,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
+import { Axios } from "../utils/axios";
 import { defaultToastProps } from "../utils/defaultToastProps";
 import { validateNoteData } from "../utils/validateNoteData";
 
@@ -38,7 +39,29 @@ function CreateNoteModal() {
         title: errors[0],
         status: "error",
       });
+      return;
     }
+    Axios.post("/add", note)
+      .then((res) => {
+        onClose();
+        setNote({
+          keyword: "",
+          description: "",
+          note: "",
+        });
+        toast({
+          ...defaultToastProps,
+          title: "Note created successfully",
+          status: "success",
+        });
+      })
+      .catch((err) => {
+        toast({
+          ...defaultToastProps,
+          title: "An error occured. Please try again",
+          status: "error",
+        });
+      });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
