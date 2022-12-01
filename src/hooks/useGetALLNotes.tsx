@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BASE_URL } from "../utils/constants";
+import { Axios } from "../utils/axios";
 import { Note } from "../utils/types";
 
 function useGetALLNotes() {
@@ -10,9 +10,8 @@ function useGetALLNotes() {
   useEffect(() => {
     const getAllNotes = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/all`);
-        const data = await response.json();
-        setNotes(data);
+        const response = await Axios.get(`/all`);
+        setNotes(response.data);
       } catch (error) {
         setError(error as any);
       }
