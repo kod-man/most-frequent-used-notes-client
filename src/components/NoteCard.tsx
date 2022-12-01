@@ -1,3 +1,4 @@
+import { DeleteIcon, SettingsIcon } from "@chakra-ui/icons";
 import { Button, Divider, Flex, Text, useToast } from "@chakra-ui/react";
 import { defaultToastProps } from "../utils/defaultToastProps";
 
@@ -19,7 +20,9 @@ function NoteCard({
         borderColor="blue.300"
         justifyContent="space-between"
       >
-        <Text bgColor="transparent">{code}</Text>
+        <Text as="b" bgColor="transparent" color="blue.600">
+          {code}
+        </Text>
         <Button
           onClick={() => {
             navigator.clipboard.writeText(code);
@@ -34,6 +37,10 @@ function NoteCard({
         >
           Copy
         </Button>
+      </Flex>
+      <Flex px={4} py={2}>
+        <SettingsIcon color="gray.500" />
+        <DeleteIcon color="red.500" ml={2} />
       </Flex>
       <Divider mt={4} />
     </Flex>
