@@ -36,7 +36,6 @@ function NoteList() {
         <Heading as="h2" size="xl" mt={6} mb={2}>
           There is no note yet
         </Heading>
-
         <CreateNoteModal />
       </Box>
     );

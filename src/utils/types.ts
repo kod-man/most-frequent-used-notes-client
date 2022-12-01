@@ -1,5 +1,4 @@
 export interface NoteData {
-  keyword: string;
   description: string;
   note: string;
 }

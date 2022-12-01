@@ -22,7 +22,6 @@ function CreateNoteModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const [note, setNote] = useState({
-    keyword: "",
     description: "",
     note: "",
   });
@@ -45,7 +44,6 @@ function CreateNoteModal() {
       .then((res) => {
         onClose();
         setNote({
-          keyword: "",
           description: "",
           note: "",
         });
@@ -93,18 +91,6 @@ function CreateNoteModal() {
           <ModalHeader>Create note</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <FormControl>
-              <FormLabel>Keyword</FormLabel>
-              <Input
-                type="text"
-                name="keyword"
-                onChange={handleInputChange}
-                placeholder="Keyword"
-                value={note.keyword}
-                required
-              />
-            </FormControl>
-
             <FormControl mt={4}>
               <FormLabel>Description</FormLabel>
               <Input
