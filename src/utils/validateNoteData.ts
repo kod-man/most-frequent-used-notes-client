@@ -5,7 +5,7 @@ export const validateNoteData = (noteData: NoteData) => {
   if (!noteData.description.trim()) {
     errors.push("Description is required.");
   }
-  if (!noteData.note.trim()) {
+  if (!noteData.code.trim()) {
     errors.push("Note is required.");
   }
   return errors;

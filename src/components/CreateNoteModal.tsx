@@ -24,7 +24,7 @@ function CreateNoteModal() {
   const toast = useToast();
   const [note, setNote] = useState({
     description: "",
-    note: "",
+    code: "",
   });
 
   const initialRef = useRef(null);
@@ -46,7 +46,7 @@ function CreateNoteModal() {
         onClose();
         setNote({
           description: "",
-          note: "",
+          code: "",
         });
         toast({
           ...defaultToastProps,
@@ -107,10 +107,10 @@ function CreateNoteModal() {
               <FormLabel>Note</FormLabel>
               <Input
                 type="text"
-                name="note"
+                name="code"
                 onChange={handleInputChange}
                 placeholder="Note"
-                value={note.note}
+                value={note.code}
                 required
               />
             </FormControl>

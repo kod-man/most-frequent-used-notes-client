@@ -43,8 +43,9 @@ function NoteList() {
       <>
         {notes.map((note) => (
           <NoteCard
+            _id={note._id}
             key={note._id}
-            code={note.note}
+            code={note.code}
             description={note.description}
           />
         ))}

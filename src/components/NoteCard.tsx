@@ -1,15 +1,37 @@
 import { DeleteIcon, SettingsIcon } from "@chakra-ui/icons";
 import { Button, Divider, Flex, Text, useToast } from "@chakra-ui/react";
+import { Axios } from "../utils/axios";
 import { defaultToastProps } from "../utils/defaultToastProps";
 
 function NoteCard({
   description,
   code,
+  _id,
 }: {
   description: string;
   code: string;
+  _id: string;
 }) {
   const toast = useToast();
+
+  const handleDeleteNote = () => {
+    Axios.delete(`/delete/${_id}`)
+      .then(() => {
+        toast({
+          ...defaultToastProps,
+          title: "Note deleted",
+          status: "success",
+        });
+      })
+      .catch((err) => {
+        toast({
+          ...defaultToastProps,
+          title: "An error occured",
+          status: "error",
+        });
+      });
+  };
+
   return (
     <Flex flexDirection="column" mt={10} w="50%" lineHeight={10}>
       <Text>{description}</Text>
@@ -40,7 +62,12 @@ function NoteCard({
       </Flex>
       <Flex px={4} py={2}>
         <SettingsIcon color="gray.500" />
-        <DeleteIcon color="red.500" ml={2} />
+        <DeleteIcon
+          onClick={handleDeleteNote}
+          color="red.500"
+          ml={2}
+          _hover={{ cursor: "pointer" }}
+        />
       </Flex>
       <Divider mt={4} />
     </Flex>

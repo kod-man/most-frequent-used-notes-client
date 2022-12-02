@@ -1,6 +1,6 @@
 export interface NoteData {
   description: string;
-  note: string;
+  code: string;
 }
 
 export interface Note extends NoteData {
