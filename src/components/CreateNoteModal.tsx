@@ -19,7 +19,12 @@ import { Axios } from "../utils/axios";
 import { defaultToastProps } from "../utils/defaultToastProps";
 import { validateNoteData } from "../utils/validateNoteData";
 
-function CreateNoteModal() {
+type Props = {
+  refetch: boolean;
+  setRefetch: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function CreateNoteModal({ refetch, setRefetch }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const [note, setNote] = useState({
@@ -53,6 +58,7 @@ function CreateNoteModal() {
           title: "Note created successfully",
           status: "success",
         });
+        setRefetch(!refetch);
       })
       .catch((err) => {
         toast({

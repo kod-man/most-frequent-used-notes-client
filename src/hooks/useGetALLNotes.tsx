@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Axios } from "../utils/axios";
 import { Note } from "../utils/types";
 
-function useGetALLNotes() {
+function useGetALLNotes(refecth: boolean) {
   const [notes, setNotes] = useState<Note[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -18,7 +18,7 @@ function useGetALLNotes() {
       setLoading(false);
     };
     getAllNotes();
-  }, []);
+  }, [refecth]);
 
   return { notes, loading, error };
 }

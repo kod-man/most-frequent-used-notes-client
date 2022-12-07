@@ -1,9 +1,26 @@
-import { Flex, HStack } from "@chakra-ui/react";
+import { Flex, HStack, Input, Spinner } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import CreateNoteModal from "../components/CreateNoteModal";
-import NoteList from "../components/NoteList";
-import SearchBar from "../components/SearchBar";
+import NoNotes from "../components/NoNotes";
+import NoteCard from "../components/NoteCard";
+import SomethingHappened from "../components/SomethingHappened";
+import useGetALLNotes from "../hooks/useGetALLNotes";
 
 function HomePage() {
+  const [refecth, setRefetch] = useState(false);
+  const { notes, loading, error } = useGetALLNotes(refecth);
+
+  useEffect(() => {
+    console.log("refetching");
+  }, [refecth]);
+
+  if (loading) {
+    return <Spinner mt={20} />;
+  }
+  if (error) {
+    return <SomethingHappened />;
+  }
+
   return (
     <Flex
       w={"full"}
@@ -16,11 +33,26 @@ function HomePage() {
     >
       <Flex w="80%" alignItems="center" justifyContent="center">
         <HStack w="100%" spacing="24px">
-          <SearchBar />
-          <CreateNoteModal />
+          <Input variant="outline" placeholder="Search note" />
+          <CreateNoteModal refetch={refecth} setRefetch={setRefetch} />
         </HStack>
       </Flex>
-      <NoteList />
+      {notes.length === 0 ? (
+        <NoNotes />
+      ) : (
+        <>
+          {notes.map((note) => (
+            <NoteCard
+              _id={note._id}
+              key={note._id}
+              code={note.code}
+              description={note.description}
+              setRefetch={setRefetch}
+              refecth={refecth}
+            />
+          ))}
+        </>
+      )}
     </Flex>
   );
 }

@@ -15,10 +15,14 @@ function NoteCard({
   description,
   code,
   _id,
+  refecth,
+  setRefetch,
 }: {
   description: string;
   code: string;
   _id: string;
+  refecth: boolean;
+  setRefetch: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -31,6 +35,7 @@ function NoteCard({
           title: "Note deleted",
           status: "success",
         });
+        setRefetch(!refecth);
       })
       .catch((err) => {
         toast({
